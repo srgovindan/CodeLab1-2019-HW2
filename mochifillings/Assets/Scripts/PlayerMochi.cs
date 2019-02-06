@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerMochi : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class PlayerMochi : MonoBehaviour
 
     void Move()
     {
+        Vector2 newMochiSpeed = new Vector2();
         if (Input.GetKey(LeftKey))
         {
             
@@ -44,6 +44,8 @@ public class PlayerMochi : MonoBehaviour
         {
             
         }
+
+       
         
     }
 
