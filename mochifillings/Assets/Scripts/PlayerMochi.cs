@@ -10,43 +10,49 @@ public class PlayerMochi : MonoBehaviour
     public KeyCode RightKey;
     public KeyCode DiveKey;
 
+    private Vector3 newMochiPos;
     private bool isGrounded;
-    private Transform mochiTransform;
-    private float groundSpeed = 5f;
-
-    void Start()
-    {
-        mochiTransform = transform;
-    }
-    
+    private float groundSpeed = .3f;
+    private float jumpSpeed = .08f;
+        
     void Update()
     {
         Move();
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Collidable"))
+        {
+            isGrounded = true;
+        }
+    }
 
     void Move()
     {
-        Vector2 newMochiSpeed = new Vector2();
+        Vector2 newMochiSpeed = new Vector3();
         if (Input.GetKey(LeftKey))
         {
-            
+            newMochiSpeed.x += -1;
         }
         if (Input.GetKey(RightKey))
         {
-            
+            newMochiSpeed.x += 1;
         }
         if (Input.GetKey(DiveKey))
         {
             Dive();
         }
-        else if (Input.GetKey(JumpKey))
+        else if (Input.GetKey(JumpKey) && isGrounded)
         {
-            
+            isGrounded = false;
+            newMochiSpeed.y += 1;
         }
-
-       
-        
+        // calculate new mochi position
+        newMochiPos.x = transform.position.x + newMochiSpeed.x * groundSpeed;
+        newMochiPos.y = transform.position.y + newMochiSpeed.y * jumpSpeed;
+        // set new mochi position 
+        transform.position = newMochiPos;
     }
 
     void Dive()
