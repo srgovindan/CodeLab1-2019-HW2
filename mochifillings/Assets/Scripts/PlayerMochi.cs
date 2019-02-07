@@ -12,6 +12,9 @@ public class PlayerMochi : MonoBehaviour
 
     private Rigidbody2D mochiRB;
     private bool isGrounded;
+    private float groundVelocity = 5f;
+    private float jumpVelocity = 10f;
+    private float diveVelocity = 8f;
 
     void Start()
     {
@@ -23,40 +26,33 @@ public class PlayerMochi : MonoBehaviour
         Move();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Collidable"))
-        {
-            isGrounded = true;
-        }
-    }
-
     void Move()
     {
-        //
+        Vector2 newMochiVelocity = new Vector2();
         if (Input.GetKey(LeftKey))
         {
-            //
+            newMochiVelocity.x += -groundVelocity;
         }
         if (Input.GetKey(RightKey))
         {
-            //
+            newMochiVelocity.x += groundVelocity;
         }
         if (Input.GetKey(DiveKey))
         {
-            Dive();
+            if (!isGrounded)
+            {
+                newMochiVelocity.y = +-diveVelocity;
+            }
         }
         else if (Input.GetKey(JumpKey) && isGrounded)
         {
             isGrounded = false;
-            // 
+            newMochiVelocity.y += jumpVelocity;
         }
-       
-    }
-
-    void Dive()
-    {
-        // dive if in air
-        // crouch if on ground
+        mochiRB.velocity = newMochiVelocity;
+        if (mochiRB.velocity == new Vector2(0,0))
+        {
+            isGrounded = true;
+        }
     }
 }
