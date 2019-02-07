@@ -14,6 +14,7 @@ public class PlayerMochi : MonoBehaviour
     private bool isGrounded;
     private float groundSpeed = .3f;
     private float jumpSpeed = .08f;
+    private float gravity = -0.07f;
         
     void Update()
     {
@@ -33,11 +34,11 @@ public class PlayerMochi : MonoBehaviour
         Vector2 newMochiSpeed = new Vector3();
         if (Input.GetKey(LeftKey))
         {
-            newMochiSpeed.x += -1;
+            newMochiSpeed.x += -groundSpeed;
         }
         if (Input.GetKey(RightKey))
         {
-            newMochiSpeed.x += 1;
+            newMochiSpeed.x += groundSpeed;
         }
         if (Input.GetKey(DiveKey))
         {
@@ -46,11 +47,11 @@ public class PlayerMochi : MonoBehaviour
         else if (Input.GetKey(JumpKey) && isGrounded)
         {
             isGrounded = false;
-            newMochiSpeed.y += 1;
+            newMochiSpeed.y += jumpSpeed;
         }
         // calculate new mochi position
-        newMochiPos.x = transform.position.x + newMochiSpeed.x * groundSpeed;
-        newMochiPos.y = transform.position.y + newMochiSpeed.y * jumpSpeed;
+        newMochiPos.x = transform.position.x + newMochiSpeed.x;
+        newMochiPos.y = transform.position.y + newMochiSpeed.y;
         // set new mochi position 
         transform.position = newMochiPos;
     }
