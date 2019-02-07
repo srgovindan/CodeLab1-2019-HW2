@@ -10,12 +10,14 @@ public class PlayerMochi : MonoBehaviour
     public KeyCode RightKey;
     public KeyCode DiveKey;
 
-    private Vector3 newMochiPos;
+    private Rigidbody2D mochiRB;
     private bool isGrounded;
-    private float groundSpeed = .3f;
-    private float jumpSpeed = .08f;
-    private float gravity = -0.07f;
-        
+
+    void Start()
+    {
+        mochiRB = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
         Move();
@@ -31,14 +33,14 @@ public class PlayerMochi : MonoBehaviour
 
     void Move()
     {
-        Vector2 newMochiSpeed = new Vector3();
+        //
         if (Input.GetKey(LeftKey))
         {
-            newMochiSpeed.x += -groundSpeed;
+            //
         }
         if (Input.GetKey(RightKey))
         {
-            newMochiSpeed.x += groundSpeed;
+            //
         }
         if (Input.GetKey(DiveKey))
         {
@@ -47,13 +49,9 @@ public class PlayerMochi : MonoBehaviour
         else if (Input.GetKey(JumpKey) && isGrounded)
         {
             isGrounded = false;
-            newMochiSpeed.y += jumpSpeed;
+            // 
         }
-        // calculate new mochi position
-        newMochiPos.x = transform.position.x + newMochiSpeed.x;
-        newMochiPos.y = transform.position.y + newMochiSpeed.y;
-        // set new mochi position 
-        transform.position = newMochiPos;
+       
     }
 
     void Dive()
