@@ -14,9 +14,9 @@ public class PlayerMochi : MonoBehaviour
     private bool isGrounded;
     private float distanceToGround = 0.02f;
 
-    private float groundVelocity = 5f;
-    private float jumpVelocity = 5f;
-    private float diveVelocity = 8f;
+    private float groundVelocity = 2f;
+    private float jumpVelocity = 2f;
+    private float diveVelocity = 5f;
 
     void Start()
     {

@@ -1641,8 +1641,8 @@ MonoBehaviour:
   LeftKey: 97
   RightKey: 100
   DiveKey: 115
---- !u!61 &1975044533
-BoxCollider2D:
+--- !u!70 &1975044533
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1654,19 +1654,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02755928, y: -0.09644973}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.26, y: 7.27}
-    newSize: {x: 8.26, y: 7.27}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7.4883823, y: 5.9196672}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.022688005, y: -0.09070587}
+  m_Size: {x: 7.171317, y: 5.538235}
+  m_Direction: 1
 --- !u!4 &1975044534
 Transform:
   m_ObjectHideFlags: 0
