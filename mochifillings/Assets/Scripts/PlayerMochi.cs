@@ -13,20 +13,21 @@ public class PlayerMochi : MonoBehaviour
     private Rigidbody2D mochiRB;
     private bool isGrounded;
     private float distanceToGround = 0.02f;
-    
+
     private float groundVelocity = 5f;
-    private float jumpVelocity = 10f;
+    private float jumpVelocity = 5f;
     private float diveVelocity = 8f;
 
     void Start()
     {
         mochiRB = GetComponent<Rigidbody2D>();
-        
+
     }
 
     void Update()
     {
         Move();
+        Debug.Log("Is Grounded: " + isGrounded);
     }
 
     void Move()
@@ -42,10 +43,7 @@ public class PlayerMochi : MonoBehaviour
         }
         if (Input.GetKey(DiveKey))
         {
-            if (!isGrounded)
-            {
                 newMochiVelocity.y = +-diveVelocity;
-            }
         }
         else if (Input.GetKey(JumpKey) && isGrounded)
         {
@@ -56,9 +54,15 @@ public class PlayerMochi : MonoBehaviour
         mochiRB.velocity = newMochiVelocity;
   
         // raycasting to check if grounded
-        if(Physics2D.Raycast(transform.position,-transform.up,1))
+        if(Physics2D.Raycast(transform.position,-transform.up,distanceToGround).collider)
         {
+            Debug.Log("Setting is grounded to true");
             isGrounded = true;
+        }
+        else
+        {
+            Debug.Log("Setting is grounded to false");
+            isGrounded = false;
         }
     }
 }
