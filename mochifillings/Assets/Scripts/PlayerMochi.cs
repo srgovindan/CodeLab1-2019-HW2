@@ -12,7 +12,7 @@ public class PlayerMochi : MonoBehaviour
 
     private Rigidbody2D mochiRB;
     private bool isGrounded;
-    private float distanceToGround = .02f;
+    private float distanceToGround = .5f;
 
     private float groundVelocity = 2f;
     private float jumpVelocity = 5f;
@@ -46,7 +46,7 @@ public class PlayerMochi : MonoBehaviour
         {
                 newMochiVelocity.y = +-diveVelocity;
         }
-        else if (Input.GetKeyDown(JumpKey) && isGrounded)
+        else if (Input.GetKey(JumpKey) && isGrounded)
         {
             newMochiVelocity.y += jumpVelocity;
         }
@@ -56,9 +56,9 @@ public class PlayerMochi : MonoBehaviour
   
         
         // setting up layer mask to ignore player collider when raycasting 
-        layerMask = 1 << 8;
+        layerMask = 1 << 9;
         //layerMask = 1 << 10 & 1 << 8;
-        layerMask = ~layerMask;
+        //layerMask = ~layerMask;
         
         // raycasting to check if grounded
         if(Physics2D.Raycast(transform.position,-transform.up, distanceToGround,layerMask))
