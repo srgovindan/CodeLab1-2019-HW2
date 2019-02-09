@@ -55,11 +55,8 @@ public class PlayerMochi : MonoBehaviour
         mochiRB.velocity = newMochiVelocity;
   
         
-        // setting up layer mask to ignore player collider when raycasting 
+        // setting up layer mask to only raycast on terrain layer
         layerMask = 1 << 9;
-        //layerMask = 1 << 10 & 1 << 8;
-        //layerMask = ~layerMask;
-        
         // raycasting to check if grounded
         if(Physics2D.Raycast(transform.position,-transform.up, distanceToGround,layerMask))
         {
