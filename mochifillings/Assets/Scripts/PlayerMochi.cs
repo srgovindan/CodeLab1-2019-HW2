@@ -60,7 +60,7 @@ public class PlayerMochi : MonoBehaviour
         // setting up layer mask to only raycast on terrain layer
         layerMask = 1 << 9;
         // raycasting to check if grounded
-        if(Physics2D.Raycast(transform.positionector2.down, distanceToGround,layerMask))
+        if(Physics2D.Raycast(transform.position,Vector2.down, distanceToGround,layerMask))
         {
             Debug.Log("Setting is grounded to true");
             isGrounded = true;
