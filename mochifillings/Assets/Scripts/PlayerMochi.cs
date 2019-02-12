@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PlayerMochi : MonoBehaviour
 {
@@ -48,7 +49,8 @@ public class PlayerMochi : MonoBehaviour
         }
         else if (Input.GetKey(JumpKey) && isGrounded)
         {
-            newMochiVelocity.y += jumpVelocity;
+            //newMochiVelocity.y += jumpVelocity;
+            mochiRB.AddForce(Vector2.up * 500);
         }
         
         // set new Mochi velocity 
@@ -58,7 +60,7 @@ public class PlayerMochi : MonoBehaviour
         // setting up layer mask to only raycast on terrain layer
         layerMask = 1 << 9;
         // raycasting to check if grounded
-        if(Physics2D.Raycast(transform.position,-transform.up, distanceToGround,layerMask))
+        if(Physics2D.Raycast(transform.positionector2.down, distanceToGround,layerMask))
         {
             Debug.Log("Setting is grounded to true");
             isGrounded = true;
